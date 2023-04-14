@@ -25,49 +25,6 @@ async function create(req, res, next) {
       timeEnd
     );
 
-    // console.log("///response///");
-    // console.log(response);
-    // console.log("///conflicts///");
-
-    // const conflicts = response.filter((event) => {
-    //   const createdEventIsSameBegin = moment(
-    //     dateBegin + "T" + timeBegin
-    //   ).isSame(event.eve_date_begin + "T" + event.eve_time_begin);
-    //   const createdEventIsSameEnd = moment(dateEnd + "T" + timeEnd).isSame(
-    //     event.eve_date_end + "T" + event.eve_time_end
-    //   );
-    //   const createdEventIsBetweenBegin = moment(
-    //     dateBegin + "T" + timeBegin
-    //   ).isBetween(
-    //     event.eve_date_begin + "T" + event.eve_time_begin,
-    //     event.eve_date_end + "T" + event.eve_time_end
-    //   );
-    //   const createdEventIsBetweenEnd = moment(
-    //     dateEnd + "T" + timeEnd
-    //   ).isBetween(
-    //     event.eve_date_begin + "T" + event.eve_time_begin,
-    //     event.eve_date_end + "T" + event.eve_time_end
-    //   );
-    //   const anotherEventIsBetweenCreatedEventBegin = moment(
-    //     event.eve_date_begin + "T" + event.eve_time_begin
-    //   ).isBetween(dateBegin + "T" + timeBegin, dateEnd + "T" + timeEnd);
-    //   const anotherEventIsBetweenCreatedEventEnd = moment(
-    //     event.eve_date_end + "T" + event.eve_time_end
-    //   ).isBetween(dateBegin + "T" + timeBegin, dateEnd + "T" + timeEnd);
-
-    //   return (
-    //     createdEventIsSameBegin ||
-    //     createdEventIsSameEnd ||
-    //     createdEventIsBetweenBegin ||
-    //     createdEventIsBetweenEnd ||
-    //     anotherEventIsBetweenCreatedEventBegin ||
-    //     anotherEventIsBetweenCreatedEventEnd
-    //   );
-    // });
-
-    // console.log(conflicts);
-    // console.log("///end///");
-
     if (conflicts.length > 0) return res.status(409).json(conflicts);
 
     await connection("events").insert({
